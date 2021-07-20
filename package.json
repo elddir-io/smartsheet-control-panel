@@ -1,0 +1,15 @@
+{
+  "name": "addnewproject",
+  "version": "1.0.0",
+  "description": "app for adding new projects to Smartsheet portfolio",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robert Riddle",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "smartsheet": "^2.126.0"
+  }
+}
