@@ -5,61 +5,80 @@ const app = express();
 
 app.use(express.urlencoded({extended: true}));
 
+const smartsheet = client.createClient({
+    accessToken: process.env.ACCESS_TOKEN,
+    logLevel: "info",
+  });
+
+  var options = {
+    id: process.env.SHEET_ID, // Id of Sheet <testing sheet>
+  };
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.listen(3000, (req, res) => {
-    console.log('server listening on port 3000')
+app.post('/', (req, res) => {
+
+    let project = req.body.project;
+    let scope = req.body.scope;
+
+        // Get sheet
+    smartsheet.sheets
+    .getSheet(options)
+    .then(function (sheetInfo) {
+    let projName = sheetInfo.columns.find((c) => c.title === "Project Name");
+    let desScope = sheetInfo.columns.find((c) => c.title === "Project Description / Scope");
+    
+    let projNameId = projName.id;
+    let desScopeId = desScope.id;
+
+
+
+    // Specify rows
+    var rows = [
+        {
+        toTop: true,
+        cells: [
+            {
+            columnId: projNameId,
+            value: project,
+            },
+            {
+            columnId: desScopeId,
+            value: scope,
+            },
+        ],
+        },
+    ];
+
+    // Set options
+    var options = {
+        sheetId: sheetInfo.id,
+        body: rows,
+    };
+    smartsheet.sheets
+        .addRows(options)
+        .then(function (newRows) {
+        console.log(newRows);
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+    })
+
+    .catch(function (error) {
+    console.log(error);
+    });
+
+    res.redirect('/');
 });
 
-// const smartsheet = client.createClient({
-//     accessToken: process.env.ACCESS_TOKEN,
-//     logLevel: "info",
-//   });
 
-//   var options = {
-//     id: process.env.SHEET_ID, // Id of Sheet <testing sheet>
-//   };
 
-// // Get sheet
-// smartsheet.sheets
-//   .getSheet(options)
-//   .then(function (sheetInfo) {
-//     let myColumn = sheetInfo.columns.find((c) => c.title === "Project Name");
-//     let myColumnId = myColumn.id;
-//     // Specify rows
-//     var rows = [
-//       {
-//         toTop: true,
-//         cells: [
-//           {
-//             columnId: myColumnId,
-//             value: "Table Project",
-//           },
-//         ],
-//       },
-//     ];
 
-//     // Set options
-//     var options = {
-//       sheetId: sheetInfo.id,
-//       body: rows,
-//     };
-//     smartsheet.sheets
-//       .addRows(options)
-//       .then(function (newRows) {
-//         console.log(newRows);
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   })
-  
-//   .catch(function (error) {
-//     console.log(error);
-//   });
 
-    
+app.listen(3000, (req, res) => {
+    console.log('server listening on port 3000')
+});   
 
