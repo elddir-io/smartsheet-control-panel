@@ -10,6 +10,23 @@
     <form action="/" method="post">
         <input type="text" name="project" placeholder="Project Name"><br><br>
         <textarea type="text" rows="5" cols="50" name="scope" placeholder="Description / Scope"></textarea><br><br>
+        <label for="type">Issue Type*:</label>
+        <select type="text" name="type" placeholder="Issue Type*">
+            <option value="Epic">Epic</option>
+            <option value="Story">Story</option>
+            <option value="Recurring">Recurring</option>
+            <option value="Research">Research</option>
+            <option value="Adhoc">Adhoc</option>
+            <option value="Training">Training</option>
+        </select><br><br>
+        <label for="priority">Priority*:</label>
+        <select type="text" name="priority">
+            <option value="Highest">Highest</option>
+            <option value="High">High</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Low">Low</option>
+            <option value="Lowest">Highest</option>
+        </select><br><br>
         <button type="submit" name="button">Submit</button>
     </form>
 </body>
