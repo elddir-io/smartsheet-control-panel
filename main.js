@@ -24,6 +24,7 @@ app.post('/', (req, res) => {
     let scope = req.body.scope;
     let type = req.body.type;
     let priority = req.body.priority;
+    let team = req.body.team;
 
         // Get sheet
     smartsheet.sheets
@@ -33,11 +34,13 @@ app.post('/', (req, res) => {
     let desScope = sheetInfo.columns.find((c) => c.title === "Project Description / Scope");
     let issueType = sheetInfo.columns.find((c) => c.title === "Issue Type*");
     let priOrity = sheetInfo.columns.find((c) => c.title === "Priority*");
+    const teams = sheetInfo.columns.find((c) => c.title === "Team");
 
     let projNameId = projName.id;
     let desScopeId = desScope.id;
     let issueTypeId = issueType.id;
     let priorityId = priOrity.id;
+    let teamsId = teams.id;
 
     // Specify rows
     var rows = [
@@ -59,6 +62,10 @@ app.post('/', (req, res) => {
             {
             columnId: priorityId,
             value: priority,
+            },
+            {
+            columnId: teamsId,
+            value: team,
             },
         ],
         },

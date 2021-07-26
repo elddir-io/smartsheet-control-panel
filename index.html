@@ -11,9 +11,9 @@
         <input type="text" name="project" placeholder="Project Name"><br><br>
         <textarea type="text" rows="5" cols="50" name="scope" placeholder="Description / Scope"></textarea><br><br>
         <label for="type">Issue Type*:</label>
-        <select type="text" name="type" placeholder="Issue Type*">
+        <select type="text" name="type">
             <option value="Epic">Epic</option>
-            <option value="Story">Story</option>
+            <option value="Story" selected>Story</option>
             <option value="Recurring">Recurring</option>
             <option value="Research">Research</option>
             <option value="Adhoc">Adhoc</option>
@@ -25,7 +25,21 @@
             <option value="High">High</option>
             <option value="Medium" selected>Medium</option>
             <option value="Low">Low</option>
-            <option value="Lowest">Highest</option>
+            <option value="Lowest">Lowest</option>
+        </select><br><br>
+        <label for="Team">Team:</label>
+        <select type="text" name="team">
+            <option value="3rd Party Delivery Enablement">3rd Party Delivery Enablement</option>
+            <option value="Global Territory Management">Global Territory Management</option>
+            <option value="GTM - CX Lifecycle Journey">GTM - CX Lifecycle Journey</option>
+            <option value="GTM - Capability Foundation">GTM - Capability Foundation</option>
+            <option value="GTM - Deal Delivery Readiness">GTM - Deal Delivery Readiness</option>
+            <option value="Portfolio & Acquisition Enablement">Portfolio & Acquisition Enablement</option>
+            <option value="Circular Economy">Circular Economy</option>
+            <option value="Migration Support Services">Migration Support Services</option>
+            <option value="DE Office">DE Office</option>
+            <option value="Business Intelligence internal">Business Intelligence internal</option>
+            <option value="SLO">SLO</option>
         </select><br><br>
         <button type="submit" name="button">Submit</button>
     </form>
