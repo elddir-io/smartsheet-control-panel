@@ -25,6 +25,7 @@ app.post('/', (req, res) => {
     const type = req.body.type;
     const priority = req.body.priority;
     const team = req.body.team;
+    const assigned = req.body.assigned;
 
         // Get sheet
     smartsheet.sheets
@@ -35,12 +36,14 @@ app.post('/', (req, res) => {
     const issueType = sheetInfo.columns.find((c) => c.title === "Issue Type*");
     const priOrity = sheetInfo.columns.find((c) => c.title === "Priority*");
     const teams = sheetInfo.columns.find((c) => c.title === "Team");
+    const assign = sheetInfo.columns.find((c) => c.title === "Assigned to*");
 
     const projNameId = projName.id;
     const desScopeId = desScope.id;
     const issueTypeId = issueType.id;
     const priorityId = priOrity.id;
     const teamsId = teams.id;
+    const assignId = assign.id;
 
     // Specify rows
     const rows = [
@@ -66,6 +69,10 @@ app.post('/', (req, res) => {
             {
             columnId: teamsId,
             value: team,
+            },
+            {
+            columnId: assignId,
+            value: assigned,
             },
         ],
         },
