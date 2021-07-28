@@ -20,30 +20,30 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
 
-    let project = req.body.project;
-    let scope = req.body.scope;
-    let type = req.body.type;
-    let priority = req.body.priority;
-    let team = req.body.team;
+    const project = req.body.project;
+    const scope = req.body.scope;
+    const type = req.body.type;
+    const priority = req.body.priority;
+    const team = req.body.team;
 
         // Get sheet
     smartsheet.sheets
     .getSheet(options)
     .then(function (sheetInfo) {
-    let projName = sheetInfo.columns.find((c) => c.title === "Project Name");
-    let desScope = sheetInfo.columns.find((c) => c.title === "Project Description / Scope");
-    let issueType = sheetInfo.columns.find((c) => c.title === "Issue Type*");
-    let priOrity = sheetInfo.columns.find((c) => c.title === "Priority*");
+    const projName = sheetInfo.columns.find((c) => c.title === "Project Name");
+    const desScope = sheetInfo.columns.find((c) => c.title === "Project Description / Scope");
+    const issueType = sheetInfo.columns.find((c) => c.title === "Issue Type*");
+    const priOrity = sheetInfo.columns.find((c) => c.title === "Priority*");
     const teams = sheetInfo.columns.find((c) => c.title === "Team");
 
-    let projNameId = projName.id;
-    let desScopeId = desScope.id;
-    let issueTypeId = issueType.id;
-    let priorityId = priOrity.id;
-    let teamsId = teams.id;
+    const projNameId = projName.id;
+    const desScopeId = desScope.id;
+    const issueTypeId = issueType.id;
+    const priorityId = priOrity.id;
+    const teamsId = teams.id;
 
     // Specify rows
-    var rows = [
+    const rows = [
         {
         toTop: true,
         cells: [
@@ -72,7 +72,7 @@ app.post('/', (req, res) => {
     ];
 
     // Set options
-    var options = {
+    const options = {
         sheetId: sheetInfo.id,
         body: rows,
     };
