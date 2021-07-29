@@ -1,6 +1,7 @@
 const express = require('express');
 const client = require('smartsheet');
 require('dotenv').config();
+const date = require(__dirname + "/date.js");
 const app = express();
 
 app.use(express.urlencoded({extended: true}));
@@ -26,6 +27,7 @@ app.post('/', (req, res) => {
     const priority = req.body.priority;
     const team = req.body.team;
     const assigned = req.body.assigned;
+    // const request = req.body.request;
 
         // Get sheet
     smartsheet.sheets
@@ -37,6 +39,7 @@ app.post('/', (req, res) => {
     const priOrity = sheetInfo.columns.find((c) => c.title === "Priority*");
     const teams = sheetInfo.columns.find((c) => c.title === "Team");
     const assign = sheetInfo.columns.find((c) => c.title === "Assigned to*");
+    const requested = sheetInfo.columns.find((c) => c.title === "Request Date");
 
     const projNameId = projName.id;
     const desScopeId = desScope.id;
@@ -44,6 +47,7 @@ app.post('/', (req, res) => {
     const priorityId = priOrity.id;
     const teamsId = teams.id;
     const assignId = assign.id;
+    const requestedId = requested.id;
 
     // Specify rows
     const rows = [
@@ -73,6 +77,10 @@ app.post('/', (req, res) => {
             {
             columnId: assignId,
             value: assigned,
+            },
+            {
+            columnId: requestedId,
+            value: date.getToday(),
             },
         ],
         },
@@ -108,3 +116,4 @@ app.listen(3000, (req, res) => {
     console.log('server listening on port 3000')
 });   
 
+// console.log(date());

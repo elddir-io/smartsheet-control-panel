@@ -1,5 +1,4 @@
-module.exports = getToday;
-function getToday() {
+exports.getToday = function () {
     let today = new Date().toISOString();
     return today;
 }
