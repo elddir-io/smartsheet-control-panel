@@ -27,7 +27,13 @@ app.post('/', (req, res) => {
     const priority = req.body.priority;
     const team = req.body.team;
     const assigned = req.body.assigned;
-    // const request = req.body.request;
+    const dueDate = req.body.dueDate;
+
+    function due () {
+        let d = new Date(dueDate).toISOString();
+        return d;
+    }
+    
 
         // Get sheet
     smartsheet.sheets
@@ -40,6 +46,7 @@ app.post('/', (req, res) => {
     const teams = sheetInfo.columns.find((c) => c.title === "Team");
     const assign = sheetInfo.columns.find((c) => c.title === "Assigned to*");
     const requested = sheetInfo.columns.find((c) => c.title === "Request Date");
+    const eta = sheetInfo.columns.find((c) => c.title === "ETA");
 
     const projNameId = projName.id;
     const desScopeId = desScope.id;
@@ -48,6 +55,7 @@ app.post('/', (req, res) => {
     const teamsId = teams.id;
     const assignId = assign.id;
     const requestedId = requested.id;
+    const etaId = eta.id;
 
     // Specify rows
     const rows = [
@@ -81,6 +89,10 @@ app.post('/', (req, res) => {
             {
             columnId: requestedId,
             value: date.getToday(),
+            },
+            {
+            columnId: etaId,
+            value: due(),
             },
         ],
         },
@@ -116,4 +128,4 @@ app.listen(3000, (req, res) => {
     console.log('server listening on port 3000')
 });   
 
-// console.log(date());
+// console.log(date.getDue());
