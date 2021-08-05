@@ -27,6 +27,7 @@ app.post('/', (req, res) => {
     const priority = req.body.priority;
     const team = req.body.team;
     const assigned = req.body.assigned;
+    const notes = req.body.notes
     const dueDate = req.body.dueDate;
 
     function due () {
@@ -47,6 +48,7 @@ app.post('/', (req, res) => {
     const assign = sheetInfo.columns.find((c) => c.title === "Assigned to*");
     const requested = sheetInfo.columns.find((c) => c.title === "Request Date");
     const eta = sheetInfo.columns.find((c) => c.title === "ETA");
+    const note = sheetInfo.columns.find((c) => c.title === "Notes");
 
     const projNameId = projName.id;
     const desScopeId = desScope.id;
@@ -56,6 +58,7 @@ app.post('/', (req, res) => {
     const assignId = assign.id;
     const requestedId = requested.id;
     const etaId = eta.id;
+    const noteId = note.id;
 
     // Specify rows
     const rows = [
@@ -93,6 +96,10 @@ app.post('/', (req, res) => {
             {
             columnId: etaId,
             value: due(),
+            },
+            {
+            columnId: noteId,
+            value: notes,
             },
         ],
         },
