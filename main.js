@@ -29,7 +29,8 @@ app.post('/', (req, res) => {
     const assigned = req.body.assigned;
     const notes = req.body.notes
     const dueDate = req.body.dueDate;
-    const email = req.body.email;
+    // const email = req.body.email;
+    const name = req.body.name;
 
     function due () {
         let d = new Date(dueDate).toISOString();
@@ -50,7 +51,8 @@ app.post('/', (req, res) => {
     const requested = sheetInfo.columns.find((c) => c.title === "Request Date");
     const eta = sheetInfo.columns.find((c) => c.title === "ETA");
     const note = sheetInfo.columns.find((c) => c.title === "Notes");
-    const eMail = sheetInfo.columns.find((c) => c.title === "Requestor Email");
+    // const eMail = sheetInfo.columns.find((c) => c.title === "Requestor Email");
+    const rname = sheetInfo.columns.find((c) => c.title === "Requestor Name");
 
     const projNameId = projName.id;
     const desScopeId = desScope.id;
@@ -61,7 +63,8 @@ app.post('/', (req, res) => {
     const requestedId = requested.id;
     const etaId = eta.id;
     const noteId = note.id;
-    const emailId = eMail.id;
+    // const emailId = eMail.id;
+    const nameId = rname.id;
 
     // Specify rows
     const rows = [
@@ -104,9 +107,13 @@ app.post('/', (req, res) => {
             columnId: noteId,
             value: notes,
             },
+            // {
+            // columnId: emailId,
+            // value: email,
+            // },
             {
-            columnId: emailId,
-            value: email,
+            columnId: nameId,
+            value: name,
             },
         ],
         },
