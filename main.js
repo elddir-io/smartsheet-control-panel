@@ -6,8 +6,8 @@ const app = express();
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
-app.use('/css', express.static(__dirname + 'public/css'));
-app.use('/js', express.static(__dirname + 'public/js'));
+// app.use('/js', express.static(__dirname + 'public/js'));
+// app.use('/css', express.static(__dirname + 'public/css'));
 
 const smartsheet = client.createClient({
     accessToken: process.env.ACCESS_TOKEN,

@@ -25,22 +25,34 @@ html {
 }
 
 .header {
-grid-column: 1/13;
-background-color: var(--bluegrey);
-border: solid var(--midnightblue);
+    grid-column: 1/13;
+    background-color: var(--bluegrey);
+    border: solid var(--midnightblue);
 }
 
 .sec {
-display: grid;
-padding: 1rem;
-/* grid-template-columns: subgrid; */
-grid-column: 1/4;
-gap: .1rem;
-background-color: var(--bluegrey);
-border: solid var(--midnightblue);
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: subgrid;
+    grid-column: 1/13;
+    gap: .1rem;
+    background-color: var(--bluegrey);
+    border: solid var(--midnightblue);
+}
+
+.sec-column1 {
+    grid-column: 1/5;
+}
+
+.story-form {
+    /* display: grid; */
+    background-color: var(--bluegrey);
+    border: solid var(--midnightblue);
 }
 
 
+
+/* ********************************************* */
 .collapsible {
     cursor: pointer;
     padding: 1px;
@@ -57,7 +69,7 @@ border: solid var(--midnightblue);
 }
 
 .content {
-    padding: 0 18px;
+    /* padding: 0 18px; */
     display: none;
     overflow: hidden;
     /* background-color: var(--skyblue) */
