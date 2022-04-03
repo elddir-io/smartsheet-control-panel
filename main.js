@@ -30,7 +30,7 @@ app.post('/', (req, res) => {
     const priority = req.body.priority;
     const team = req.body.team;
     const assigned = req.body.assigned;
-    // const notes = req.body.notes;
+    
     // const dueDate = req.body.dueDate;
     // const email = req.body.email;
     // const name = req.body.name;
@@ -50,10 +50,8 @@ app.post('/', (req, res) => {
     const issueType = sheetInfo.columns.find((c) => c.title === "Issue Type");
     const priOrity = sheetInfo.columns.find((c) => c.title === "Priority");
     const teams = sheetInfo.columns.find((c) => c.title === "Team");
-    const assign = sheetInfo.columns.find((c) => c.title === "Assigned to");
-    // const requested = sheetInfo.columns.find((c) => c.title === "Request Date");
-    // const eta = sheetInfo.columns.find((c) => c.title === "Due Date");
-    // const note = sheetInfo.columns.find((c) => c.title === "Notes");
+    const assign = sheetInfo.columns.find((c) => c.title === "Assigned to");    
+    // const eta = sheetInfo.columns.find((c) => c.title === "Due Date");    
     // const eMail = sheetInfo.columns.find((c) => c.title === "Requestor Email");
     // const rname = sheetInfo.columns.find((c) => c.title === "Requestor Name");
 
@@ -62,10 +60,8 @@ app.post('/', (req, res) => {
     const issueTypeId = issueType.id;
     const priorityId = priOrity.id;
     const teamsId = teams.id;
-    const assignId = assign.id;
-    // const requestedId = requested.id;
-    // const etaId = eta.id;
-    // const noteId = note.id;
+    const assignId = assign.id;    
+    // const etaId = eta.id;    
     // const emailId = eMail.id;
     // const nameId = rname.id;
 
@@ -97,19 +93,11 @@ app.post('/', (req, res) => {
             {
             columnId: assignId,
             value: assigned,
-            },
-            // {
-            // columnId: requestedId,
-            // value: date.getToday(),
-            // },
+            },            
             // {
             // columnId: etaId,
             // value: due(),
-            // },
-            // {
-            // columnId: noteId,
-            // value: notes,
-            // },
+            // },            
             // // {
             // // columnId: emailId,
             // // value: email,
@@ -149,7 +137,7 @@ app.post('/', (req, res) => {
 
 
 app.listen(3000, (req, res) => {
-    console.log('server listening on port 3000')
+    console.log('server listening on port 3000 -- http://localhost:3000/')
 });   
 
 // console.log(date.getDue());
