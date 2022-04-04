@@ -53,9 +53,7 @@ html {
     background-color: var(--bluegrey);
 }
 
-.content-box {
-    /* margin: .5rem; */
-}
+
 
 .form-box {
     display: grid;

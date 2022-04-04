@@ -29,14 +29,13 @@ app.post('/', (req, res) => {
     const type = req.body.type;
     const priority = req.body.priority;
     const team = req.body.team;
-    const assigned = req.body.assigned;
-    
-    // const dueDate = req.body.dueDate;
-    // const email = req.body.email;
-    // const name = req.body.name;
+    const assigned = req.body.assigned;    
+    const targetDate = req.body.targetDate;
+    const email = req.body.email;
+    const name = req.body.name;
 
-    function due () {
-        let d = new Date(dueDate).toISOString();
+    function target () {
+        let d = new Date(targetDate).toISOString();
         return d;
     }
     
@@ -51,9 +50,9 @@ app.post('/', (req, res) => {
     const priOrity = sheetInfo.columns.find((c) => c.title === "Priority");
     const teams = sheetInfo.columns.find((c) => c.title === "Team");
     const assign = sheetInfo.columns.find((c) => c.title === "Assigned to");    
-    // const eta = sheetInfo.columns.find((c) => c.title === "Due Date");    
-    // const eMail = sheetInfo.columns.find((c) => c.title === "Requestor Email");
-    // const rname = sheetInfo.columns.find((c) => c.title === "Requestor Name");
+    const eta = sheetInfo.columns.find((c) => c.title === "Target Date");    
+    const eMail = sheetInfo.columns.find((c) => c.title === "Requestor Email");
+    const rname = sheetInfo.columns.find((c) => c.title === "Requestor Name");
 
     const projNameId = projName.id;
     const desScopeId = desScope.id;
@@ -61,9 +60,9 @@ app.post('/', (req, res) => {
     const priorityId = priOrity.id;
     const teamsId = teams.id;
     const assignId = assign.id;    
-    // const etaId = eta.id;    
-    // const emailId = eMail.id;
-    // const nameId = rname.id;
+    const etaId = eta.id;    
+    const emailId = eMail.id;
+    const nameId = rname.id;
 
     // Specify rows
     const rows = [
@@ -94,18 +93,18 @@ app.post('/', (req, res) => {
             columnId: assignId,
             value: assigned,
             },            
-            // {
-            // columnId: etaId,
-            // value: due(),
-            // },            
-            // // {
-            // // columnId: emailId,
-            // // value: email,
-            // // },
-            // {
-            // columnId: nameId,
-            // value: name,
-            // },
+            {
+            columnId: etaId,
+            value: target(),
+            },            
+            {
+            columnId: emailId,
+            value: email,
+            },
+            {
+            columnId: nameId,
+            value: name,
+            },
         ],
         },
     ];
