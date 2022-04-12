@@ -13,15 +13,11 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-html {
-    
-    /* background-color: rgba(0, 0, 0, 0.281); */
-}
 
 .main-container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    /* gap: .2rem; */
+    gap: .2rem;
     margin: 1rem;
 }
 
@@ -33,12 +29,12 @@ html {
 
 .sec {
     display: grid;
-    /* padding: 1rem; */
+    padding: 1rem;
     grid-template-columns: subgrid;
     grid-column: 1/13;
     gap: .2rem;
     /* background-color: var(--bluegrey); */
-    /* border: solid .3px var(--midnightblue); */
+    border: solid .3px var(--midnightblue);
     border-radius: 15px;
 }
 

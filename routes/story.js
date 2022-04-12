@@ -1,8 +1,5 @@
 const client = require('smartsheet');
 
-
-
-
 const smartsheet = client.createClient({
     accessToken: process.env.ACCESS_TOKEN,
     logLevel: "info",
@@ -27,8 +24,7 @@ function createStory (req, res) {
     const name = req.body.name;
 
     function target () {
-        let d = new Date(targetDate).toISOString();
-        return d;
+        return new Date(targetDate).toISOString();        
     }
 
 
@@ -36,84 +32,84 @@ function createStory (req, res) {
     smartsheet.sheets
     .getSheet(options)
     .then(function (sheetInfo) {
-    const projName = sheetInfo.columns.find((c) => c.title === "Project Name");
-    const desScope = sheetInfo.columns.find((c) => c.title === "Project Description / Scope");
-    const issueType = sheetInfo.columns.find((c) => c.title === "Issue Type");
-    const priOrity = sheetInfo.columns.find((c) => c.title === "Priority");
-    const teams = sheetInfo.columns.find((c) => c.title === "Team");
-    const assign = sheetInfo.columns.find((c) => c.title === "Assigned to");    
-    const eta = sheetInfo.columns.find((c) => c.title === "Target Date");    
-    const eMail = sheetInfo.columns.find((c) => c.title === "Requestor Email");
-    const rname = sheetInfo.columns.find((c) => c.title === "Requestor Name");
+        const projName = sheetInfo.columns.find((c) => c.title === "Project Name");
+        const desScope = sheetInfo.columns.find((c) => c.title === "Project Description / Scope");
+        const issueType = sheetInfo.columns.find((c) => c.title === "Issue Type");
+        const priOrity = sheetInfo.columns.find((c) => c.title === "Priority");
+        const teams = sheetInfo.columns.find((c) => c.title === "Team");
+        const assign = sheetInfo.columns.find((c) => c.title === "Assigned to");    
+        const eta = sheetInfo.columns.find((c) => c.title === "Target Date");    
+        const eMail = sheetInfo.columns.find((c) => c.title === "Requestor Email");
+        const rname = sheetInfo.columns.find((c) => c.title === "Requestor Name");
 
-    const projNameId = projName.id;
-    const desScopeId = desScope.id;
-    const issueTypeId = issueType.id;
-    const priorityId = priOrity.id;
-    const teamsId = teams.id;
-    const assignId = assign.id;    
-    const etaId = eta.id;    
-    const emailId = eMail.id;
-    const nameId = rname.id;
+        const projNameId = projName.id;
+        const desScopeId = desScope.id;
+        const issueTypeId = issueType.id;
+        const priorityId = priOrity.id;
+        const teamsId = teams.id;
+        const assignId = assign.id;    
+        const etaId = eta.id;    
+        const emailId = eMail.id;
+        const nameId = rname.id;
 
-    // Specify rows
-    const rows = [
-        {
-        toTop: true,
-        cells: [
+        // Specify rows
+        const rows = [
             {
-            columnId: projNameId,
-            value: project,
+            toTop: true,
+            cells: [
+                {
+                columnId: projNameId,
+                value: project,
+                },
+                {
+                columnId: desScopeId,
+                value: scope,
+                },
+                {
+                columnId: issueTypeId,
+                value: type,
+                },
+                {
+                columnId: priorityId,
+                value: priority,
+                },
+                {
+                columnId: teamsId,
+                value: team,
+                },
+                {
+                columnId: assignId,
+                value: assigned,
+                },            
+                {
+                columnId: etaId,
+                value: target(),
+                },            
+                {
+                columnId: emailId,
+                value: email,
+                },
+                {
+                columnId: nameId,
+                value: name,
+                },
+            ],
             },
-            {
-            columnId: desScopeId,
-            value: scope,
-            },
-            {
-            columnId: issueTypeId,
-            value: type,
-            },
-            {
-            columnId: priorityId,
-            value: priority,
-            },
-            {
-            columnId: teamsId,
-            value: team,
-            },
-            {
-            columnId: assignId,
-            value: assigned,
-            },            
-            {
-            columnId: etaId,
-            value: target(),
-            },            
-            {
-            columnId: emailId,
-            value: email,
-            },
-            {
-            columnId: nameId,
-            value: name,
-            },
-        ],
-        },
-    ];
+        ];
 
-    // Set options
-    const options = {
-        sheetId: sheetInfo.id,
-        body: rows,
-    };
-    smartsheet.sheets
-        .addRows(options)
-        .then(function (newRows) {
-        console.log(newRows);
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
+        // Set options
+        const options = {
+            sheetId: sheetInfo.id,
+            body: rows,
+        };
+        smartsheet.sheets
+            .addRows(options)
+            .then(function (newRows) {
+            console.log(newRows);
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
     })
 
     .catch(function (error) {
