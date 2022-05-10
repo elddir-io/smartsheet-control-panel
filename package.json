@@ -4,12 +4,14 @@
   "description": "app for adding new projects to Smartsheet portfolio",
   "main": "main.js",
   "scripts": {
+    "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Robert Riddle",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
+    "ejs": "^3.1.7",
     "express": "^4.17.1",
     "smartsheet": "^2.126.0"
   }
