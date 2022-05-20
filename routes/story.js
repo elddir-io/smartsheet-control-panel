@@ -38,7 +38,7 @@ function createStory (req, res) {
         const priOrity = sheetInfo.columns.find((c) => c.title === "Priority");
         const teams = sheetInfo.columns.find((c) => c.title === "Team");
         const assign = sheetInfo.columns.find((c) => c.title === "Assigned to");    
-        const eta = sheetInfo.columns.find((c) => c.title === "Target Date");    
+        const eta = sheetInfo.columns.find((c) => c.title === "Estimated Target Date");    
         const eMail = sheetInfo.columns.find((c) => c.title === "Requestor Email");
         const rname = sheetInfo.columns.find((c) => c.title === "Requestor Name");
 

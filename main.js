@@ -13,7 +13,7 @@ const story = require('./routes/story');
 app.set("view engine", "ejs");
 
 
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 
@@ -43,7 +43,6 @@ const team = {
         projects: []
     }
 };
-
 
 
 function getAnalystProjects() {
@@ -76,16 +75,14 @@ const goofy = team.goofy.projects
 
 /************************************************************************ */
    
-// app.use((req, res) => {
-
-// })
+// app.use((req, res) => {})
 
 app.get('/', (req, res) => {
-    // req.getAnalystProjects()
     res.render("index", 
     {
         mickeysProjects: mickey, 
-        donaldsProjects: donald
+        donaldsProjects: donald,
+        goofysProjcts: goofy
     });
 });
 

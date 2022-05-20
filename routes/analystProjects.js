@@ -24,7 +24,7 @@ const team = {
 
 
 
-function getAnalystProjects(){
+function getAnalystProjects(req, res){
     // Get sheet, push data to array 
     smartsheet.sheets.getSheet(options)
     .then(function(sheetInfo) {
@@ -49,9 +49,11 @@ function getAnalystProjects(){
     const mickey = team.mickey.projects
     const donald = team.donald.projects
     const goofy = team.goofy.projects
+
+    // res.redirect('/')
 };
 
 
-getAnalystProjects()
+// getAnalystProjects()
 
 // module.exports = getAnalystProjects
