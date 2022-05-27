@@ -16,14 +16,14 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 
-  
+const analyst = require('./models/analyst')
 
 app.get('/', (req, res) => {
     res.render("index", 
     {
-        mickeysProjects: mickey, 
-        donaldsProjects: donald,
-        goofysProjcts: goofy
+        mickeysProjects: mickeyPj, 
+        donaldsProjects: donaldPj,
+        // goofysProjcts: goofyPj
     });
 });
 
