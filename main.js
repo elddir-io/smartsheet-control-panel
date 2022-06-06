@@ -6,7 +6,8 @@ const app = express();
 
 
 
-const getAnalystProjects = require('./routes/analystProjects');
+const getAnalystProjects = require('./routes/analystData');
+const analyst = require('./models/analyst')
 const story = require('./routes/story');
 // const epic = require('./routes/epic')
 
@@ -16,7 +17,6 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 
-const analyst = require('./models/analyst')
 
 app.get('/', (req, res) => {
     res.render("index", 

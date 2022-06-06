@@ -1,4 +1,4 @@
-const getAnalystProjects = require('../routes/analystProjects')
+const getAnalystProjects = require('../routes/analystData')
 
 
 

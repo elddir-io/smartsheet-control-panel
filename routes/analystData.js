@@ -37,12 +37,6 @@ exports.getAnalystProjects = smartsheet.sheets.getSheet(options)
 
 
 
-// module.exports = team.mickey.projects
-// module.exports = team.donald.projects
-// module.exports = team.goofy.projects
 
-// module.exports = mickeyPj
-// module.exports = donaldPj
-// module.exports = goofyPj
 
  
