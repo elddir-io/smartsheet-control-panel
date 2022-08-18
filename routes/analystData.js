@@ -13,14 +13,14 @@ const options = {
 };
 
 
-    // Get sheet, push data to array 
-exports.getAnalystProjects = smartsheet.sheets.getSheet(options)
+    // Get sheet, push data to analyst object - models/analyst.js 
+exports.getAnalystData = smartsheet.sheets.getSheet(options)
 .then(function(sheetInfo) {
     const sheetRows = sheetInfo.rows    
     const projectColumnID = sheetInfo.columns.find((co) => co.title === "Project Name").id
     const assignedToID = sheetInfo.columns.find((co) => co.title === "Assigned to").id
             
-    // get projects for a given analyst
+    // get projects for a given analyst - need to loop over analyst list from [Assingned To] column
     sheetRows.forEach(function(value) {            
         const cellData = value.cells
         const projectName = cellData.find((ce) => ce.columnId === projectColumnID).displayValue

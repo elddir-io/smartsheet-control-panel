@@ -6,7 +6,7 @@ const app = express();
 
 
 
-const getAnalystProjects = require('./routes/analystData');
+const getAnalystData = require('./routes/analystData');
 const analyst = require('./models/analyst')
 const story = require('./routes/story');
 // const epic = require('./routes/epic')
